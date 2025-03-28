@@ -6,7 +6,7 @@ class MsUser(models.Model):
     password = fields.CharField(max_length=100)
     date_join = fields.DatetimeField(auto_now_add=True)
     last_login = fields.DatetimeField(null=True)
-    is_active = fields.BooleanField(default=False)
+    is_active = fields.BooleanField(default=True)
     is_staff = fields.BooleanField(default=False)
     is_superuser = fields.BooleanField(default=False)
 

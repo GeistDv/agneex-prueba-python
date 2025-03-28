@@ -46,6 +46,7 @@ class MsUserPublic(MsUserBase):
 
     class Config:
         from_attributes=True
+        
 
 
 MsUser_C_Pydantic = pydantic_model_creator(

@@ -97,6 +97,39 @@ UPDATE msuser SET is_active = TRUE WHERE microservice = 'nombre_del_microservici
 ```
 Si `is_active` está en `FALSE`, **no se podrá generar el `access_token` correctamente**.
 
+🔹 Modificación del modelo MsUser
+El modelo MsUser fue modificado para que el campo is_active siempre sea True por defecto, asegurando que los otros endpoints funcionen correctamente.
+
+class MsUser(models.Model):
+    microservice = fields.CharField(max_length=100, unique=True)
+    password = fields.CharField(max_length=100)
+    date_join = fields.DatetimeField(auto_now_add=True)
+    last_login = fields.DatetimeField(null=True)
+    is_active = fields.BooleanField(default=True)  # Modificado
+    is_staff = fields.BooleanField(default=False)
+    is_superuser = fields.BooleanField(default=False)
+
+
+🔧 Comandos para migraciones
+Para correr las migraciones, usa los siguientes comandos:
+
+aerich init -t src.config.tortoise_conf.TORTOISE_ORM
+aerich init-db
+aerich migrate
+aerich upgrade
+
+📂 Archivos adicionados en la rama develop
+En la rama develop, se adicionaron los siguientes archivos:
+
+Un test
+
+Un archivo pyproject.toml
+
+Un archivo uv.lock
+
+La carpeta migrations
+
+Esto se realizó debido a problemas con el entorno virtual para correr las migraciones y ejecutar el proyecto. Por lo tanto, se separaron los proyectos para mostrar de manera funcional la prueba.
 ---
 
 ✅ **Con estos pasos, tu aplicación estará lista para ejecutarse correctamente.** 🚀
